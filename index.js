@@ -51,4 +51,15 @@ if(metodo == 'POST' && recurso == "products"){
     .then(data => console.log(data));
 }
 
- 
+
+//---ACTIVIDAD 4 DELETE
+ if(metodo == "DELETE" && recurso.startsWith('products/')){
+    const id = parseInt(recurso.split("/")[1]);
+
+    fetch('https://fakestoreapi.com/products/' + id, {
+  method: 'DELETE'
+})
+  .then(response => response.json())
+  .then(data => console.log(data));
+    
+ }
