@@ -4,7 +4,7 @@
 // const metodo =process.argv[2];
 // const recurso = process.argv[3];
 
-let [, , metodo, recurso]= process.argv;
+let [, , metodo, recurso, ...params]= process.argv;
 metodo = metodo.toUpperCase();
 recurso = recurso.toLowerCase();
 
@@ -33,5 +33,22 @@ if (metodo == 'GET' && recurso.startsWith('products/')){
 }
 
 
-//ACTIVIDAD 3
+//ACTIVIDAD 3 --- agregar un producto con POST
+if(metodo == 'POST' && recurso == "products"){
+    const [title, price, category] = params;
+    
+    const product = { 
+        title, 
+        price, 
+        category,
+    }
+    fetch('https://fakestoreapi.com/products', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(product)
+})
+    .then(response => response.json())
+    .then(data => console.log(data));
+}
 
+ 
